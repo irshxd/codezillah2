@@ -255,7 +255,7 @@ ul.topnav li.right {float: right;}
   height: 400px;
   align-content: space-evenly;
   grid-template-columns: auto auto auto;
-  gap: 50px;
+  gap: 10px;
   background-color: black;
   padding: 100px;
   /* border-radius: 8px; */
@@ -264,7 +264,7 @@ ul.topnav li.right {float: right;}
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 100px 0;
+  padding: 50px 0;
   font-size: 30px;
   border-radius: 8px;
 }
