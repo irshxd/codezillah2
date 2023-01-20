@@ -205,8 +205,9 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 18px;
   text-decoration: none;
+  font-size:medium ;
 }
 
 li a:hover {
@@ -214,6 +215,7 @@ li a:hover {
 }
 .active {
   background-color: #04AA6D;
+  border-radius: 8px;
 }
 ul {
   position: fixed;
@@ -236,7 +238,7 @@ ul.topnav li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 18px;
   text-decoration: none;
 }
 
@@ -264,10 +266,28 @@ ul.topnav li.right {float: right;}
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 50px 0;
+  padding: 30px 0;
   font-size: 30px;
   border-radius: 8px;
 }
 video{
   position: unset;
 }
+.videobox{
+  /* margin-top:7px; */
+  width: 84.3rem;
+  height: 37rem;
+  /* border-style: dotted; */
+  /* border-color: black; */
+  /* position: fixed; */
+  background-color: #111;
+}
+.haha{
+  font-size:30px;
+  text-align: center;
+  height: 38px;
+  margin-bottom: 1px;
+  padding-top: 0%;
+}
+
+

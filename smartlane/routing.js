@@ -1,72 +1,25 @@
-const urlPageTitle = "JS Single Page Application Router";
-
-// create document click that watches the nav links only
-document.addEventListener("click", (e) => {
-	const { target } = e;
-	if (!target.matches("nav a")) {
-		return;
-	}
-	e.preventDefault();
-	urlRoute();
-});
-
-// create an object that maps the url to the template, title, and description
-const urlRoutes = {
-	// 404: {
-	// 	template: "/templates/404.html",
-	// 	title: "404 | " + urlPageTitle,
-	// 	description: "Page not found",
-	// },
-	"/home": {
-		template: "../smartlane/index.html",
-		title: "Home | " + Smartlane,
-		description: "This is the home page",
-	// },
-	// "/news": {
-	// 	template: "/templates/about.html",
-	// 	title: "About Us | " + urlPageTitle,
-	// 	description: "This is the control center page",
-	},
-	"/contact": {
-		template: "../smartlane/camfeed.html",
-		title: Camfeed,
-		description: "This is the cam feed page",
-	},
+const route = (event) => {
+    event = event || window.event;
+    event.preventDefault();
+    window.history.pushState({}, "", event.target.href);
+    handleLocation();
 };
 
-// create a function that watches the url and calls the urlLocationHandler
-const urlRoute = (event) => {
-	event = event || window.event; // get window.event if event argument not provided
-	event.preventDefault();
-	// window.history.pushState(state, unused, target link);
-	window.history.pushState({}, "", event.target.href);
-	urlLocationHandler();
+const routes = {
+    // 404: "/pages/404.html",
+    "/": "/smartlane/index.html",
+    "/Home": "/smartlane/Home.html",
+    "/Camfeed": "/smartlane/Camfeed.html",
 };
 
-// create a function that handles the url location
-const urlLocationHandler = async () => {
-	const location = window.location.pathname; // get the url path
-	// if the path length is 0, set it to primary page route
-	if (location.length == 0) {
-		location = "/home";
-	}
-	// get the route object from the urlRoutes object
-	const route = urlRoutes[location] || urlRoutes["404"];
-	// get the html from the template
-	const html = await fetch(route.template).then((response) => response.text());
-	// set the content of the content div to the html
-	document.getElementById("content").innerHTML = html;
-	// set the title of the document to the title of the route
-	document.title = route.title;
-	// set the description of the document to the description of the route
-	document
-		.querySelector('meta[name="description"]')
-		.setAttribute("content", route.description);
+const handleLocation = async () => {
+    const path = window.location.pathname;
+    const route = routes[path] || routes[404];
+    const html = await fetch(route).then((data) => data.text());
+    document.getElementById("main-page").innerHTML = html;
 };
 
-// add an event listener to the window that watches for url changes
-window.onpopstate = urlLocationHandler;
-// call the urlLocationHandler function to handle the initial url
-window.route = urlRoute;
-// call the urlLocationHandler function to handle the initial url
-urlLocationHandler();
+window.onpopstate = handleLocation;
+
+window.route = route;
+handleLocation();
